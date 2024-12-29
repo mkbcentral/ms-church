@@ -13,12 +13,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('preachings', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('description')->nullable();
-            $table->string('audio_url');
-            $table->string('preacher');
-            $table->foreignIdFor(Church::class)
+            $table->uuid('id')->primary();
+            $table->string('title')->nullable();
+            $table->string('preacher')->nullable();
+            $table->string('audio_url')->nullable();
+            $table->string('cover_url')->nullable()->after('preacher');
+            $table->string('color')->nullable()->after('cover_url');
+            $table->foreignUuid('church_id')
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();

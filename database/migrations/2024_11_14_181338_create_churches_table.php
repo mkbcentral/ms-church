@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('churches', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('name');
             $table->string('abbreviation')->nullable();
             $table->string('phone')->nullable()->unique();
@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('country')->nullable();
-            $table->foreignIdFor(User::class)
-                ->constrained()
+            $table->foreignUuid('user_id')
+                ->constrained('users')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->softDeletes();

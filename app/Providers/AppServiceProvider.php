@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Church;
+use App\Models\Preaching;
 use App\Policies\ChurchPolicy;
+use App\Policies\PreachingPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Sanctum\PersonalAccessToken;
@@ -25,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
-        Gate::policy(Church::class,ChurchPolicy::class);
+        Gate::policy(Church::class, ChurchPolicy::class);
+        Gate::policy(Preaching::class, PreachingPolicy::class);
     }
 }

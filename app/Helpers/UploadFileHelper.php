@@ -19,20 +19,19 @@ class UploadFileHelper
         string $directory,
         string $type = "audio",
         string $disk = 'public'
-    ): ?string{
+    ): ?string {
         if ($file != null) {
             if ($type == "audio") {
-                $filename = time() . '.mp3';
+                $filename = \Str::uuid() . '.mp3';
             } else {
-                $filename = time() . '.png';
+                $filename = \Str::uuid() . '.png';
             }
             Storage::disk($disk)->put($directory . $filename, base64_decode($file));
             return  $directory . $filename;
-        }else{
+        } else {
             return null;
         }
     }
-
     /**
      * Delete a file from the server
      * @param $path

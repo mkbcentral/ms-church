@@ -12,16 +12,16 @@ class ChurchResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'name'=>$this->name,
-            'abbreviation'=>$this->abbreviation,
-            'address'=>$this->address,
-            'phone'=>$this->phone,
-            'email'=>$this->email,
-            'logo'=>$this->logo,
-            'city'=>$this->city,
-            'state'=>$this->state,
-            'country'=>$this->country,
-            'user'=>UserResource::make($this->user)
+            'id' => $this->id,
+            'name' => $this->name,
+            'abbreviation' => $this->abbreviation,
+            'phone' => $this->phone,
+            'email' => $this->email,
+            'logo' => $this->logo,
+            'address' => $this->address,
+            'city' => $this->city,
+            'state' => $this->state,
+            'country' => $this->country,
         ];
     }
 }

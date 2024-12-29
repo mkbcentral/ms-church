@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,13 +12,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Preaching extends Model
 {
-    use SoftDeletes,HasFactory;
+    use SoftDeletes, HasFactory, HasUuids;
     protected $table = 'preachings';
     protected  $fillable = [
         'title',
         'description',
         'audio_url',
         'preacher',
+        'cover_url',
+        'color',
         'church_id'
     ];
     /**
@@ -25,16 +28,16 @@ class Preaching extends Model
      */
     public function church(): BelongsTo
     {
-        return $this->belongsTo(Church::class,'church_id');
+        return $this->belongsTo(Church::class, 'church_id');
     }
 
     public function followers(): BelongsToMany
     {
-        return $this->belongsToMany(User::class,'preaching_follows');
+        return $this->belongsToMany(User::class, 'preaching_follows');
     }
 
     // Relation avec les vues (écoutes) des utilisateurs
-    public function views():HasMany
+    public function views(): HasMany
     {
         return $this->hasMany(PreachingFollow::class);
     }

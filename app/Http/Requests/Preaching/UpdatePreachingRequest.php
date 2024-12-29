@@ -10,9 +10,10 @@ class UpdatePreachingRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'description' => 'required|string',
+            'cover_url' => 'nullable|string',
             'audio_url' => 'nullable|string',
-            'preacher'=>'required|string',
+            'color' => 'nullable|string',
+            'preacher' => 'required|string',
         ];
     }
 

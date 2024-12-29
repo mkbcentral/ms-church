@@ -13,11 +13,12 @@ class PreachingFactory extends Factory
     public function definition(): array
     {
         return [
-            'title'=>fake()->firstName(),
-            'description'=>fake()->paragraph(),
-            'audio_url'=>fake()->url(),
-            'preacher'=>fake()->firstName(),
-            'church_id'=>Church::all()->random()->id,
+            'title' => fake()->firstName(),
+            'description' => fake()->paragraph(),
+            'audio_url' => fake()->url(),
+            'preacher' => fake()->firstName(),
+            'color' => fake()->colorName,
+            'church_id' => Church::all()->random()->id,
         ];
     }
 }

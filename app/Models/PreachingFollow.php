@@ -7,6 +7,5 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class PreachingFollow extends Model
 {
-    protected $fillable=['user_id','preaching_id'];
-
+    protected $fillable = ['user_id', 'preaching_id'];
 }

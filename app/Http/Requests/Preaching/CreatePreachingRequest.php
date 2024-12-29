@@ -13,9 +13,11 @@ class CreatePreachingRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'description' => 'required|string',
-            'audio_url' => 'nullable',
-            'preacher'=>'required|string',
+            'description' => 'nullable|string',
+            'preacher' => 'required|string',
+            'audio_url' => 'string|required',
+            'cover_url' => 'required|string',
+            'color' => 'required|string',
         ];
     }
 

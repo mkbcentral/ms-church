@@ -12,12 +12,14 @@ class PreachingResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'=>$this->id,
-            'title'=>$this->title,
-            'description'=>$this->description,
-            'audio_url'=>$this->audio_url,
-            'preacher'=>$this->preacher,
-            'church'=>ChurchResource::make($this->church)
+            'id' => $this->id,
+            'title' => $this->title,
+            'description' => $this->description,
+            'audio_url' => $this->audio_url,
+            'preacher' => $this->preacher,
+            'cover_url' => $this->cover_url,
+            'color' => $this->color,
+            'church' => ChurchResource::make($this->church)
         ];
     }
 }
