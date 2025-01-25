@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('preacher')->nullable();
             $table->string('audio_url')->nullable();
-            $table->string('cover_url')->nullable()->after('preacher');
-            $table->string('color')->nullable()->after('cover_url');
+            $table->string('cover_url')->nullable();
+            $table->string('color')->nullable();
             $table->foreignUuid('church_id')
                 ->constrained()
                 ->cascadeOnDelete()
