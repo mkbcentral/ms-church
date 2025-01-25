@@ -16,10 +16,14 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('phone')->unique();
+            $table->string('phone')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('avatar_url')->nullable()->after('phone');
+            $table->string('avatar_url')->nullable();
+            $table->string('google_avatar_url')->nullable();
+            $table->string('fbk_avatar_url')->nullable();
+            $table->boolean('is_google')->default(false);
+            $table->boolean('is_facebook')->default(false);
             $table->foreignIdFor(Role::class)->constrained('roles');
             $table->rememberToken();
             $table->softDeletes();

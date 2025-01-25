@@ -31,6 +31,10 @@ class User extends Authenticatable
         'avatar_url',
         'password',
         'role_id',
+        'google_avatar_url',
+        'fbk_avatar_url',
+        'is_google',
+        'is_facebook',
     ];
     /**
      * The attributes that should be hidden for serialization.
@@ -52,6 +56,8 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_google' => 'boolean',
+            'is_facebook' => 'boolean',
         ];
     }
 

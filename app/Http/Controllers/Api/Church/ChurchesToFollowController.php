@@ -12,14 +12,21 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ChurchesToFollowController extends Controller
 {
-    public function index()
+    public function index(int $limit)
     {
         try {
-            $churches = Church::query()
+            $query = Church::query()
                 ->orderBy('created_at', 'desc')
-                ->orderBy('name', 'asc')
-                ->limit(10)
-                ->get();
+                ->orderBy('name', 'asc');
+            $search = request('search');
+            // Appliquer le filtre de recherche si le paramètre est présent
+            if ($search) {
+                $query->where(function ($subQuery) use ($search) {
+                    $subQuery->where('name', 'like', '%' . $search . '%')
+                        ->orWhere('abbreviation', 'like', '%' . $search . '%');
+                });
+            }
+            $churches = $query->limit($limit)->get();
             return response([
                 'churches' => ChurchResource::collection($churches),
             ], Response::HTTP_OK);

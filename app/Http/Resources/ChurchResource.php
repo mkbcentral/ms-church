@@ -22,6 +22,7 @@ class ChurchResource extends JsonResource
             'city' => $this->city,
             'state' => $this->state,
             'country' => $this->country,
+            'preaching_number' => $this->preachings->count(),
         ];
     }
 }

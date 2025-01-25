@@ -9,6 +9,7 @@ use App\Models\Church;
 use App\Models\Preaching;
 use Exception;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class PreachingByChurchController extends Controller
@@ -26,7 +27,9 @@ class PreachingByChurchController extends Controller
                 });
             }
             $preachings = $query->where('church_id', $church->id)->get();
-            return PreachingResource::collection($preachings);
+            return response()->json([
+                'preachings' =>  PreachingResource::collection($preachings),
+            ], Response::HTTP_OK);
         } catch (Exception $exception) {
             $handler = new CustomExceptionHandler();
             return $handler->render($request, $exception);

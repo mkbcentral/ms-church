@@ -21,6 +21,10 @@ class UserResource extends JsonResource
             'phone' => $this->phone,
             'avatar_url' => $this->avatar_url,
             'role' => $this->role->name,
+            'google_avatar_url' => $this->google_avatar_url,
+            'fbk_avatar_url' => $this->fbk_avatar_url,
+            'is_google' => $this->is_google,
+            'is_facebook' => $this->is_facebook,
             'church' => new ChurchResource($this->church),
         ];
     }

@@ -18,7 +18,7 @@ class LogoutController extends Controller
         try {
             Auth::user()->tokens()->delete();
             return response([
-                'message' => 'user logged out successfully.',
+                'message' => 'Vous êtes bien déconnecté.',
                 'success' => true,
             ], Response::HTTP_OK);
         } catch (Exception $exception) {

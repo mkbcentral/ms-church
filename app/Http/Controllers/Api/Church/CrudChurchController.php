@@ -11,9 +11,7 @@ use App\Http\Resources\ChurchResource;
 use App\Models\Church;
 use Auth;
 use Exception;
-use Illuminate\Database\QueryException;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class CrudChurchController extends Controller
 {
@@ -34,14 +32,9 @@ class CrudChurchController extends Controller
             return response([
                 'churches' => ChurchResource::collection($churches),
             ], Response::HTTP_OK);
-        } catch (HttpException $exception) {
-            return response()->json(
-                [
-                    'error' => $exception->getMessage(),
-                    'success' => false,
-                ],
-                $exception->getStatusCode()
-            );
+        } catch (Exception $exception) {
+            $handler = new CustomExceptionHandler();
+            return $handler->render(request(), $exception);
         }
     }
 
@@ -61,14 +54,9 @@ class CrudChurchController extends Controller
             return response()->json([
                 'church' => new ChurchResource($church),
             ], Response::HTTP_CREATED);
-        } catch (HttpException $exception) {
-            return response()->json(
-                [
-                    'error' => $exception->getMessage(),
-                    'success' => false,
-                ],
-                $exception->getStatusCode()
-            );
+        } catch (Exception $exception) {
+            $handler = new CustomExceptionHandler();
+            return $handler->render($request, $exception);
         }
     }
 
@@ -79,13 +67,9 @@ class CrudChurchController extends Controller
     {
         try {
             return response()->json(new ChurchResource($church), Response::HTTP_OK);
-        } catch (HttpException $exception) {
-            return response()->json(
-                [
-                    'error' => $exception->getMessage(),
-                    'success' => false,
-                ]
-            );
+        } catch (Exception $exception) {
+            $handler = new CustomExceptionHandler();
+            return $handler->render(request(), $exception);
         }
     }
 
@@ -118,14 +102,6 @@ class CrudChurchController extends Controller
                 ]);
             }
             return response()->json(new ChurchResource($church), Response::HTTP_CREATED);
-        } catch (HttpException $exception) {
-            return response()->json(
-                [
-                    'error' => $exception->getMessage(),
-                    'success' => false,
-                ],
-                $exception->getStatusCode()
-            );
         } catch (Exception $exception) {
             $handler = new CustomExceptionHandler();
             return $handler->render($request, $exception);
